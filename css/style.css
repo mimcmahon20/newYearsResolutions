@@ -26,18 +26,113 @@ body {
 .heading {
     margin: 0px;
     padding: 0px;
-    height: 10vh;
+    height: 12.5vh;
     width: 100%;
     background-color: var(--color-four);
     color: var(--color-primary);
-    position: absolute;
+    position: fixed;
     align-items: center;
     display: flex;
+    z-index: 2;
+    border-bottom: 3px solid var(--color-four);
+}
+
+.nameContainer {
+    text-align: center;
+    display: flex;
+    gap: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .name {
-    padding: 10px;
     font-size: 48px;
+}
+
+/* Animation for header */
+
+.moveIn {
+    animation: moveIn forwards .3s ease-in;
+    animation-delay: .4s;
+}
+
+.dissapear {
+    animation: dissapear .3s forwards;
+}
+
+.moveOut {
+    animation: moveOut .3s forwards ease-in;
+}
+
+.appear {
+    animation: appear .3s forwards;
+    animation-delay: .5s;
+}
+
+.blueToWhite {
+    animation: blueToWhite .3s forwards;
+}
+
+.whiteToBlue {
+    animation: whiteToBlue .3s forwards;
+}
+
+@keyframes dissapear {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes moveIn {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translate(calc(-48px * 2.4 - 12px));
+    }
+}
+
+@keyframes moveOut {
+    0% {
+        transform: translate(calc(-48px * 2.4 - 12px));
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes blueToWhite {
+    0% {
+        background-color: var(--color-four);
+        color: var(--color-primary);
+    }
+    100% {
+        background-color: var(--color-primary);
+        color: var(--color-four);
+    }
+}
+
+@keyframes whiteToBlue {
+    0% {
+        background-color: var(--color-primary);
+        color: var(--color-four);
+    }
+    100% {
+        background-color: var(--color-four);
+        color: var(--color-primary);
+    }
 }
 
 /* Legend */
@@ -45,7 +140,7 @@ body {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr;
-    padding-top: 10vh;
+    padding-top: calc(12.5vh + 3px);
     justify-content: left;
 }
 
@@ -172,6 +267,16 @@ body {
     
 }
 
+.past:nth-child(1){ 
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+}
+
+.past:nth-last-child(1){ 
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+
 
 .lift {
     background-color: var(--color-lift);
@@ -195,6 +300,12 @@ body {
 
 
 /* Responsiveness and Media Queries */
+@media screen and (max-width: 900px) {
+    .day-name {
+        font-size: 12px;
+    }
+}
+
 @media screen and (max-width: 750px) {
     .year {
         grid-template-columns: 1fr 1fr;
@@ -202,11 +313,16 @@ body {
     .legend {
         grid-template-columns: 1fr 1fr 1fr;
     }
+    .name {
+        font-size: 48px;
+    }
+    
 }
 
 @media screen and (max-width: 600px) {
     .year {
         grid-template-columns: 1fr;
+        font-size: 36px;
     }
     
 }
