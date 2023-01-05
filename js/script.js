@@ -1,44 +1,73 @@
 const days = document.querySelectorAll(".day");
 const months = document.querySelectorAll(".month");
 
-const options = {
+const optionsDay = {
+    root: null,
+    rootMargin: "0px",
+    threshold: .25
+};
+
+const optionsMonth = {
     root: null,
     rootMargin: "0px",
     threshold: 0
 };
 
-const observer = new IntersectionObserver(function(entries, observer) {
+let counterDay = 1250;
+
+const observerDay = new IntersectionObserver(function(entries, observerDay) {
     entries.forEach(entry => {
         if (!entry.isIntersecting) {
-            entry.target.classList.add("appear");
-            observer.unobserve(entry.target);
+            entry.target.style.opacity = "1";
+            return;
         }
-        entry.target.classList.add("appear");
-        observer.unobserve(entry.target);
+        // entry.target.classList.add("appear");
+        entry.target.style.animation = "appear 1s ease-out forwards";
+        entry.target.style.animationDelay = counterDay + "ms";
+        counterDay = counterDay + Math.log(counterDay);
+        observerDay.unobserve(entry.target);
+        console.log(entry.target);
     });
-}, options);
+}, optionsDay);
 
-let counterDay = 250;
+let counterMonth = 250;
+
+const observerMonth = new IntersectionObserver(function(entries, observerMonth) {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            return;
+        }
+        // entry.target.classList.add("appear");
+        entry.target.style.animation = "appear 1s ease-out forwards";
+        entry.target.style.animationDelay = counterMonth + "ms";
+        counterMonth += 100;
+        observerMonth.unobserve(entry.target);
+        
+    });
+}, optionsMonth);
+
 
 days.forEach(day => { 
-    day.style.transition = "all 500ms " + counterDay + "ms ease-out";
-    if(counterDay > 6000) {
-        counterDay = 250;
-    } else {
-        counterDay += 25;
-    }
+    // day.style.transition = "all 15000ms " + counterDay + "ms ease-out";
+    // if(counterDay > 60000) {
+    //     counterDay = 250;
+    // } else {
+    //     counterDay += 2500;
+    // }
+
     
-    observer.observe(day);
+    
+    observerDay.observe(day);
 });
 
-let counterMonth = 300;
 
 months.forEach(month => {
-    month.style.transition = "all 1s " + counterMonth + "ms ease-out";
-    if(counterMonth < 1000) { 
-        counterMonth += 200;
-    } 
-    observer.observe(month);
+    // month.style.transition = "all 1s ease-out";
+    // if(counterMonth < 1000) { 
+    //     counterMonth += 200;
+    // }
+    
+    observerMonth.observe(month);
 });
-
 

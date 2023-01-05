@@ -11,10 +11,11 @@
     --color-work: rgb(128, 236, 5);
     --color-journal: rgb(5, 236, 151); */
     --color-lift: #068D9D;
-    --color-water: #00A6FB;
+    --color-work: #00A6FB;
     --color-compliment: #7AFDD6;
-    --color-work: #77FF94;
+    --color-water: #77FF94;
     --color-journal: #A1E44D;
+    --color-dish: #F7F056;
 
     --width-month: 250px;
     --width-day: 30px;
@@ -178,7 +179,7 @@ body {
 .legend {
     width: 100%;
     display: grid;
-    grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
+    grid-template-columns: repeat(6, 1fr);
     padding-top: calc(12.5vh + 3px);
     justify-content: left;
 }
@@ -340,13 +341,19 @@ body {
     background-color: var(--color-journal);
 }
 
+.dish {
+    background-color: var(--color-dish);
+}
+
 
 /* Responsiveness and Media Queries */
 @media screen and (max-width: 900px) {
     .day-name {
         font-size: 12px;
     }
-
+    .legend {
+        grid-template-columns: repeat(3, 1fr)
+    }
     .legend-counter {
         font-size: 12px;
     }
@@ -376,6 +383,11 @@ body {
 }
 
 /* CSS for Scripts */
-.appear {
-    opacity: 1;
+.appearMonth {
+    animation: appear 1s ease forwards;
 }
+
+.appearDay {
+    animation: appear 1s ease forwards;
+}
+
