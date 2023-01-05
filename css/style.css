@@ -178,7 +178,7 @@ body {
 .legend {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
     padding-top: calc(12.5vh + 3px);
     justify-content: left;
 }
@@ -190,6 +190,7 @@ body {
     width: 100%;
     text-align: center;
 }
+
 
 .legend-item {
     display: flex;
