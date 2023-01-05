@@ -5,11 +5,16 @@
     --color-four: rgb(11, 72, 77);
     --color-five: rgb(221, 219, 203);
 
-    --color-lift: rgb(231, 14, 2);
+    /* --color-lift: rgb(231, 14, 2);
     --color-water: rgb(244, 140, 3);
     --color-compliment: rgb(216, 177, 5);
     --color-work: rgb(128, 236, 5);
-    --color-journal: rgb(5, 236, 151);
+    --color-journal: rgb(5, 236, 151); */
+    --color-lift: #068D9D;
+    --color-water: #00A6FB;
+    --color-compliment: #7AFDD6;
+    --color-work: #77FF94;
+    --color-journal: #A1E44D;
 
     --width-month: 250px;
     --width-day: 30px;
@@ -35,6 +40,8 @@ body {
     display: flex;
     z-index: 2;
     border-bottom: 3px solid var(--color-four);
+    justify-content: space-between;
+    padding-left: 10px;
 }
 
 .nameContainer {
@@ -47,6 +54,11 @@ body {
 
 .name {
     font-size: 48px;
+}
+
+.resolutionHead {
+    padding: 30px;
+    font-size: 24px;
 }
 
 /* Animation for header */
@@ -75,6 +87,15 @@ body {
 
 .whiteToBlue {
     animation: whiteToBlue .3s forwards;
+}
+
+.resolutionIn {
+    animation: resolutionIn .3s forwards;
+}
+
+.resolutionOut {
+    animation: resolutionOut .3s forwards;
+    animation-delay: .3s;
 }
 
 @keyframes dissapear {
@@ -135,6 +156,24 @@ body {
     }
 }
 
+@keyframes resolutionOut {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes resolutionIn {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 /* Legend */
 .legend {
     width: 100%;
@@ -181,6 +220,7 @@ body {
     position: absolute;
     opacity: 0;
     transition: all .5s ease;
+    font-size: 24px;
 }
 
 .legend-key:hover .legend-name {
@@ -254,7 +294,7 @@ body {
     flex-grow: 2;
 }
 
-.day.blank {
+.blank {
     background-color: var(--color-four);
 }
 
@@ -264,12 +304,13 @@ body {
     width: 100%;
     flex-grow: 1;
     overflow: clip;
-    
+    border-top: 1px solid var(--color-four);
 }
 
 .past:nth-child(1){ 
     border-top-left-radius: 10%;
     border-top-right-radius: 10%;
+    border-top: 0px;
 }
 
 .past:nth-last-child(1){ 
@@ -304,6 +345,10 @@ body {
     .day-name {
         font-size: 12px;
     }
+
+    .legend-counter {
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 750px) {
@@ -324,7 +369,9 @@ body {
         grid-template-columns: 1fr;
         font-size: 36px;
     }
-    
+    .resolutionHead {
+        display: none;
+    }
 }
 
 /* CSS for Scripts */

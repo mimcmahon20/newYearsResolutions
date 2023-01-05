@@ -2,7 +2,7 @@ const header = document.querySelector('.heading');
 const lookOut = document.querySelector('.lookOut');
 const half = document.querySelectorAll('.chunk');
 const mSecond = document.querySelector('.secondM');
-
+const resolution = document.querySelector('.resolutionHead');
 
 const optionsHead = { 
     root: null,
@@ -21,6 +21,8 @@ appear = () => {
 const observerHead = new IntersectionObserver(function(entries,observerHead) {
     entries.forEach(entry => {
         if(!entry.isIntersecting) {
+            resolution.classList.remove('resolutionIn');
+            resolution.classList.add('resolutionOut');
             half[0].classList.remove('appear');
             half[1].classList.remove('appear');
             half[0].classList.add('dissapear');
@@ -33,6 +35,8 @@ const observerHead = new IntersectionObserver(function(entries,observerHead) {
         }
         else {
             if(active) {
+                resolution.classList.remove('resolutionOut');
+                resolution.classList.add('resolutionIn');
                 half[0].style.opacity = '0';
                 half[1].style.opacity = '0';
                 half[0].classList.remove('dissapear');
