@@ -19,6 +19,7 @@ const observerDay = new IntersectionObserver(function(entries, observerDay) {
     entries.forEach(entry => {
         if (!entry.isIntersecting) {
             entry.target.style.opacity = "1";
+            observerDay.unobserve(entry.target);
             return;
         }
         // entry.target.classList.add("appear");
@@ -36,6 +37,7 @@ const observerMonth = new IntersectionObserver(function(entries, observerMonth) 
     entries.forEach(entry => {
         if (!entry.isIntersecting) {
             entry.target.style.opacity = "1";
+            observerMonth.unobserve(entry.target);
             return;
         }
         // entry.target.classList.add("appear");
